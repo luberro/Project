@@ -1,0 +1,237 @@
+/* 
+P S E U D O C O D E
+Classe Budget_Professeurs va:
+Parser un fichier Json
+Validation des champs qu'il n'y a pas des null
+Validation des champs int et Doubles
+Créer des objets de type Proffesseur et Salaire
+  * Proffesseur ( Constructeur avec String nom, String prenom, Double tauxHoraire, int ancienneté, int niveauEducation)
+  * Proffesseur ( Constructeur n` accepte pas des nulls et doit valider int et Doubles)
+  * Salaire (Constructeur avec Professeur, Double tax_Provincial, Double tax_Federal)
+  * Salaire calculé selon: taux horaire, niveau d education, anciennete et les taxes provincial et federal
+Calculer somme total des salaires
+
+*/
+
+
+/**
+* 
+* Public Class Budget_Professeurs
+* Ajouter Description
+* @version 0.1
+* @author BERL07618309 LUCIA BERRO MADERO
+* */
+
+import JSON Lite;
+
+public class Budget_Professeurs{
+
+    /* liste de variables */
+    
+      private String nomFichier;
+      private File fichier;
+      private Double total; 
+      private static [Professeur] liste_Profs;
+
+        /* * 
+         * public static void main()
+         * Description:
+         * Demander le nom du fichier
+         * Demarrer algorithmes pour le calcul du Budget
+         * Afficher le resultat TOTAL
+         * @params(String[]params)
+         * @return void
+         **/
+        public static void main(String[]params){
+
+                //demander le document 
+                
+                System.out.println("Entrez le nom du Fichier");
+                
+                //Saisir String  
+                
+                nomFichier = 
+                
+                //Initializer fichier
+                
+                fichier = new File (nomFichier); 
+              
+                //initalizer lecture demarre le remplissage de liste_Profs
+              
+                lireJSON( fichier);
+                
+                //calculer la somme total des salaires
+                
+                Double resultat = calculerTotal(); 
+                
+                //Afficher le total
+                
+                System.out.println("/n Le Budget Total du Departement est estime a : " + resultat.toString() + "$");
+                System.out.println("Fermeture normal du programme");
+        }   
+
+
+      /* * 
+       * static private lireJSON(File fichier)
+       * Description
+       * @params File fichier
+       * @return void
+       **/
+           static private void lireJSON(File fichier){
+          
+                JSONObject budget_Departement = new JSONObject.fromObject(fichier);
+                
+                JSONArray profs_Departement = budget_Departement.getJSONArray("Professeur");
+                
+                //demarrer liste_Profs 
+                liste_Profs = new [profs_Departement.size()];
+                
+                //Creer Objects pour ajouter a liste_Profs[]
+                JSONObject professeur = new JSONObject();
+                
+                //boucle for
+                
+                for (int i = 0; i < profs_Departement.size(); i++){
+                
+                        professeur = profs_Departement.getJSONObject(i);
+                        String nom = professeur.getString("nom");
+                        Double tauxHoraire = professeur.getDouble("tauxHoraire");
+                        int anciennete = professeur.getInt("anciennete");
+                        int qteHeures = professeur.getInt("qteHeures");
+                        int niveauEducation = professeur.getInt();
+                        
+                        Professeur input = new Professeur(nom,  anciennete, qteHeures, tauxHoraire, niveauEducation);
+                        liste_Profs[i] = input;
+                }   
+                
+
+        
+        ****************************************************
+        /**
+        * Public class Professeur
+        * 
+        */
+        public class Professeur{ 
+
+            /* variables */
+            String nom;
+            int anciennete;
+            int qteHeures;
+            int niveauEducation;
+            Double tauxHoraire;
+
+            //constructeur
+            public Professeur (String nom, int anciennite, int qteHeures, Double tauxHoraire, int niveauEducation){
+              setNom(nom);
+              setAnciennete(anciennete);
+              setNiveauEducation(niveauEducation);
+              setQteHeures(qteHeures);
+              setTauxHoraire(tauxHoraire);
+
+            }
+            
+            ////// GET & SET
+              private setNom(String nom){
+                
+                }
+              private setAnciennete(int anciennete){
+              
+                //validation
+                     if() {
+                       this.anciennete = anciennete;
+                      }
+                }
+                
+              private setQteHeures(int qteHeures){
+              
+                //validation
+                     if() {
+                       this.qteHeures = qteHeures;
+                      }
+                }
+                
+              private setTauxHoraire(Double tauxHoraire){
+              
+                 //validation
+                     if() {
+                       this.tauxHoraire = tauxHoraire;
+                      }
+                }
+                
+              private setNiveauEducation(int niveauEducation){
+              
+                  //validation
+                      if() { 
+                       this niveauEducation = niveauEducation;
+                      }
+                }
+                
+              public String getNom(){
+                  return nom;
+                }
+                
+              public getAnciennete(){
+                  return anciennete;
+                }
+                
+              public getQteHeures(){
+                  return qteHeures;
+                }
+                
+              public getTauxHoraire(){
+                  return tauxHoraire;
+                }
+                
+              ppublic getNiveauEducation(){
+                  return niveauEducation;
+                }
+              
+          }
+          *********************************************************
+          
+          /**
+          * Public class Salaire
+          *
+          */
+          public class Salaire{ 
+
+              /* variables */
+              Double tax_Provinciale;
+              Double tax_Federal;
+
+                //constructeur
+                public Salaire (Professeur prof){
+                
+                    setTaxProviniciale();
+                    
+                    setTaxFederal();
+                    
+                    calculSalaire(prof.getTauxHoraire(), prof.getEducation(), prof.getAnciennete(), tax_Provinciale, tax_Federal);    
+                
+                }
+
+                /** 
+                * private static calculSalaire(Double tauxHoraire, int education, int anciennete, Double tax_Provinciale , Double tax_Federal)
+                * Description
+                * @params Double, int, int, Double, Double
+                * @return Double
+                **/
+                  private static Double calculSalaire(Double tauxHoraire, int education, int anciennete, Double tax_Provinciale , Double tax_Federal){
+
+                    }
+                    
+                  /////// GET & SET
+                  protected setTaxProviniciale(){
+                    tax_Pronvinciale = 
+                    }
+                  
+                  protected setTaxFederal(){
+                    tax_Federal = 
+                    }
+
+            }
+             *********************************************************
+
+} 
+
+
